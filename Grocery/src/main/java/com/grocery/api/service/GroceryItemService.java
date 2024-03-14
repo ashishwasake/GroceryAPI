@@ -40,13 +40,9 @@ public class GroceryItemService {
 		groceryItemRepository.delete(item);
 	}
 
-	// Additional methods for managing inventory levels
-
 	public void updateInventory(Long id, int quantity) {
 		GroceryItem item = getItemById(id);
 		item.setQuantity(item.getQuantity() + quantity);
 		groceryItemRepository.save(item);
 	}
-
-	// Other service methods as needed
 }

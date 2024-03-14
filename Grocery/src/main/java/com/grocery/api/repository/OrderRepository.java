@@ -8,6 +8,9 @@ import com.grocery.api.entity.Order;
 import com.grocery.api.entity.User;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-	
-	 List<Order> findByUser(User user);
+
+	List<Order> findByUser(User user);
+
+	List<Order> findByUserId(Long userId);
+
 }

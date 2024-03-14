@@ -1,5 +1,6 @@
 package com.grocery.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //GroceryItemController.java
@@ -52,4 +53,15 @@ public class GroceryItemController {
      groceryItemService.deleteItem(id);
      return ResponseEntity.ok().build();
  }
+ 
+ @PostMapping("/create")
+ public ResponseEntity<List<GroceryItem>> createOrder(@RequestBody List<GroceryItem> items) {
+     List<GroceryItem> createdItems = new ArrayList<>();
+     for (GroceryItem item : items) {
+         GroceryItem newItem = groceryItemService.addItem(item);
+         createdItems.add(newItem);
+     }
+     return ResponseEntity.status(HttpStatus.CREATED).body(createdItems);
+ }
+
 }

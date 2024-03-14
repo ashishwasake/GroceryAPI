@@ -17,35 +17,33 @@ import com.grocery.api.repository.UserRepository;
 
 @Service
 public class OrderService {
- @Autowired
- private OrderRepository orderRepository;
+	@Autowired
+	private OrderRepository orderRepository;
 
- @Autowired
- private GroceryItemRepository groceryItemRepository;
- 
- @Autowired
- private UserRepository userRepository;
+	@Autowired
+	private GroceryItemRepository groceryItemRepository;
 
- public Order createOrder(List<Long> itemIds) {
-     List<GroceryItem> items = groceryItemRepository.findAllById(itemIds);
-     Order order = new Order();
-     order.setItems(items);
-     return orderRepository.save(order);
- }
+	@Autowired
+	private UserRepository userRepository;
 
- public Order getOrderById(Long id) {
-     return orderRepository.findById(id)
-             .orElseThrow(() -> new OrderNotFoundException(id));
- }
+	public Order createOrder(List<Long> itemIds) {
+		List<GroceryItem> items = groceryItemRepository.findAllById(itemIds);
+		Order order = new Order();
+		order.setItems(items);
+		return orderRepository.save(order);
+	}
 
- // Additional methods for managing user orders
+	public Order getOrderById(Long id) {
+		return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
+	}
 
- public List<Order> getUserOrders(Long userId) {
-     User user = userRepository.findById(userId)
-             .orElseThrow(() -> new UserNotFoundException(userId));
+	public List<Order> getUserOrders(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 
-     return orderRepository.findByUser(user);
- }
- // Other service methods as needed
+		return orderRepository.findByUser(user);
+	}
+
+	public List<Order> getUserOrderHistory(Long userId) {
+		return orderRepository.findByUserId(userId);
+	}
 }
-
