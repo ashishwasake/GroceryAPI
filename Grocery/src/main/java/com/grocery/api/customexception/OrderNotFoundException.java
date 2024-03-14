@@ -1,7 +1,12 @@
 package com.grocery.api.customexception;
 
 public class OrderNotFoundException extends RuntimeException {
-    public OrderNotFoundException(Long id) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public OrderNotFoundException(Long id) {
         super("Order with ID " + id + " not found.");
     }
 }

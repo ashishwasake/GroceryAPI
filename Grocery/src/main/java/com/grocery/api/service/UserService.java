@@ -17,7 +17,6 @@ public class UserService {
 	}
 
 	public void registerUser(User user) {
-		// Perform validation if needed
 		userRepository.save(user);
 	}
 

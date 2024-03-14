@@ -1,7 +1,12 @@
 package com.grocery.api.customexception;
 
 public class GroceryItemNotFoundException extends RuntimeException {
-    public GroceryItemNotFoundException(Long id) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public GroceryItemNotFoundException(Long id) {
         super("Grocery item with ID " + id + " not found.");
     }
 }
