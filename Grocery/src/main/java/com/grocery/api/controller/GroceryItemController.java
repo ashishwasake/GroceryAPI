@@ -20,7 +20,7 @@ import com.grocery.api.entity.GroceryItem;
 import com.grocery.api.service.GroceryItemService;
 
 @RestController
-@RequestMapping("/api/grocery")
+@RequestMapping("/api/admin/grocery")
 public class GroceryItemController {
  @Autowired
  private GroceryItemService groceryItemService;

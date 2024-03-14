@@ -16,7 +16,7 @@ import com.grocery.api.entity.Order;
 import com.grocery.api.service.OrderService;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/user/orders")
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
