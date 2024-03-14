@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grocery.api.customexception.OrderNotFoundException;
+import com.grocery.api.customexception.UserNotFoundException;
 import com.grocery.api.entity.GroceryItem;
 import com.grocery.api.entity.Order;
+import com.grocery.api.entity.User;
 import com.grocery.api.repository.GroceryItemRepository;
 import com.grocery.api.repository.OrderRepository;
+import com.grocery.api.repository.UserRepository;
 
 @Service
 public class OrderService {
@@ -19,6 +22,9 @@ public class OrderService {
 
  @Autowired
  private GroceryItemRepository groceryItemRepository;
+ 
+ @Autowired
+ private UserRepository userRepository;
 
  public Order createOrder(List<Long> itemIds) {
      List<GroceryItem> items = groceryItemRepository.findAllById(itemIds);
@@ -35,9 +41,11 @@ public class OrderService {
  // Additional methods for managing user orders
 
  public List<Order> getUserOrders(Long userId) {
-     // Implement logic to retrieve orders for a specific user
- }
+     User user = userRepository.findById(userId)
+             .orElseThrow(() -> new UserNotFoundException(userId));
 
+     return orderRepository.findByUser(user);
+ }
  // Other service methods as needed
 }
 
