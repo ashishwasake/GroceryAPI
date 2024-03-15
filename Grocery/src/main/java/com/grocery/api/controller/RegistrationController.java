@@ -15,7 +15,7 @@ public class RegistrationController {
 		this.userService = userService;
 	}
 
-	@PostMapping("/register")
+	@PostMapping("/api/register")
 	public void registerUser(@RequestBody User user) {
 		userService.registerUser(user);
 	}

@@ -22,15 +22,30 @@ public class SecurityConfig {
 	public static PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeHttpRequests((authorize) -> authorize.requestMatchers("/api/admin/grocery/**")
-				.permitAll().requestMatchers("/api/user/orders").permitAll().requestMatchers("/register").permitAll());
+	    http.csrf().disable()
+	        .authorizeRequests()
+	            .requestMatchers("/api/admin/grocery/**").permitAll()
+	            .requestMatchers("/api/user/orders").permitAll()
+	            .requestMatchers("/api/register").permitAll();
 
-		return http.build();
-
+	    return http.build();
 	}
+
+
+	/*
+	 * @Bean public SecurityFilterChain filterChain(HttpSecurity http) throws
+	 * Exception { http.csrf().disable().authorizeHttpRequests((authorize) ->
+	 * authorize.requestMatchers("/api/admin/grocery/**")
+	 * .permitAll().requestMatchers("/api/user/orders").permitAll().requestMatchers(
+	 * "/api/register").permitAll());
+	 * 
+	 * return http.build();
+	 * 
+	 * }
+	 */
 
 	public SecurityConfig(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
