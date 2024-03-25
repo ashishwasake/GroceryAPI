@@ -22,40 +22,40 @@ import com.grocery.api.service.GroceryItemService;
 @RestController
 @RequestMapping("/api/admin/grocery")
 public class GroceryItemController {
- @Autowired
- private GroceryItemService groceryItemService;
+	@Autowired
+	private GroceryItemService groceryItemService;
 
- @GetMapping("/items")
- public List<GroceryItem> getAllItems() {
-     return groceryItemService.getAllItems();
- }
+	@GetMapping("/items")
+	public List<GroceryItem> getAllItems() {
+		return groceryItemService.getAllItems();
+	}
 
- @GetMapping("/{id}")
- public ResponseEntity<GroceryItem> getItemById(@PathVariable Long id) {
-     GroceryItem item = groceryItemService.getItemById(id);
-     return ResponseEntity.ok().body(item);
- }
+	@GetMapping("/{id}")
+	public ResponseEntity<GroceryItem> getItemById(@PathVariable Long id) {
+		GroceryItem item = groceryItemService.getItemById(id);
+		return ResponseEntity.ok().body(item);
+	}
 
- @PutMapping("/{id}")
- public ResponseEntity<GroceryItem> updateItem(@PathVariable Long id, @RequestBody GroceryItem item) {
-     GroceryItem updatedItem = groceryItemService.updateItem(id, item);
-     return ResponseEntity.ok().body(updatedItem);
- }
+	@PutMapping("/{id}")
+	public ResponseEntity<GroceryItem> updateItem(@PathVariable Long id, @RequestBody GroceryItem item) {
+		GroceryItem updatedItem = groceryItemService.updateItem(id, item);
+		return ResponseEntity.ok().body(updatedItem);
+	}
 
- @DeleteMapping("/{id}")
- public ResponseEntity<?> deleteItem(@PathVariable Long id) {
-     groceryItemService.deleteItem(id);
-     return ResponseEntity.ok().build();
- }
- 
- @PostMapping("/create")
- public ResponseEntity<List<GroceryItem>> createOrder(@RequestBody List<GroceryItem> items) {
-     List<GroceryItem> createdItems = new ArrayList<>();
-     for (GroceryItem item : items) {
-         GroceryItem newItem = groceryItemService.addItem(item);
-         createdItems.add(newItem);
-     }
-     return ResponseEntity.status(HttpStatus.CREATED).body(createdItems);
- }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteItem(@PathVariable Long id) {
+		groceryItemService.deleteItem(id);
+		return ResponseEntity.ok().build();
+	}
+
+	@PostMapping("/create")
+	public ResponseEntity<List<GroceryItem>> createOrder(@RequestBody List<GroceryItem> items) {
+		List<GroceryItem> createdItems = new ArrayList<>();
+		for (GroceryItem item : items) {
+			GroceryItem newItem = groceryItemService.addItem(item);
+			createdItems.add(newItem);
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdItems);
+	}
 
 }
