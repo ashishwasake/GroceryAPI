@@ -36,12 +36,6 @@ public class GroceryItemController {
      return ResponseEntity.ok().body(item);
  }
 
- @PostMapping
- public ResponseEntity<GroceryItem> addItem(@RequestBody GroceryItem item) {
-     GroceryItem newItem = groceryItemService.addItem(item);
-     return ResponseEntity.status(HttpStatus.CREATED).body(newItem);
- }
-
  @PutMapping("/{id}")
  public ResponseEntity<GroceryItem> updateItem(@PathVariable Long id, @RequestBody GroceryItem item) {
      GroceryItem updatedItem = groceryItemService.updateItem(id, item);
